@@ -1,0 +1,58 @@
+*{
+    padding: 5px;
+}
+.container{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+li{
+    color: red;
+}
+.reg{
+    width: 40%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+.login{
+    width: 40%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+.right{
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+}
+.mid{
+    display: block;
+}
+.bot{
+    display: block;
+}
+table {
+    text-align: center;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: fit-content;
+} 
+
+td {
+    border: 1px solid black;
+}
+.contain{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

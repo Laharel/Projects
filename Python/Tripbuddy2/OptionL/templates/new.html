@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>New Trip</title>
+</head>
+<body>
+    <div class="top">
+        <h1>Hello {{user.first_name}}! Create a trip!</h1>
+        <h5><a href="/logout">Logout</a></h5>
+    </div>
+    <div class="contain">
+        {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <li>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form action="/trips/create" method="post">
+        {% csrf_token %}
+        <label for="dest">Destination</label>
+        <input type="text" name="dest">
+        <label for="start">Start Date</label>
+        <input type="date" min="2021-01-01" max="2023-12-31" name="start">
+        <label for="end">End Date</label>
+        <input type="date" min="2021-01-01" max="2023-12-31"  name="end">
+        <label for="plan">Plan</label>
+        <textarea name="plan" cols="20" rows="10"></textarea>
+        <button type="submit">Create</button>
+        </form>
+        <a href="/dashboard"><button type="submit">Cancel</button></a>
+    </div>
+</body>
+</html>

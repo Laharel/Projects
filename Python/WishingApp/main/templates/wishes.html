@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>The Wishing App</title>
+</head>
+<body>
+    <div class="top">
+        <h1>Welcome {{ this.first_name }}!</h1>
+        <div class="right">
+            <a href="/logout"><button>Logout</button></a>
+            <a href="/wishes/stats"><button>View stats</button></a>
+            <a href="/wishes/new"><button>Make a wish!</button></a>
+        </div>
+    </div>
+    <div class="mid">
+        <h3>Your wish list:</h3>
+        <table>
+            <th>
+                <tr>
+                    <td>Item</td>
+                    <td>Date added</td>
+                    <td>Actions</td>
+                </tr>
+            </th>
+            <tbody>
+                {% if mywishes %}
+                    {% for wish in mywishes%}
+                        {% if  wish not in grant %}
+                            <tr>
+                                <td>{{ wish.wish }}</td>
+                                <td>{{ wish.wish_date }}</td>
+                                <td>
+                                    <a href="/wishes/remove/{{wish.id}}">Remove</a> | 
+                                    <a href="/wishes/edit/{{wish.id}}">Edit</a> |
+                                    <a href="/wishes/grant/{{wish.id}}">Grant</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <div class="bot">
+        <h3>Granted wishes</h3>
+        <table>
+            <th>
+                <tr>
+                    <td>Item</td>
+                    <td>Wisher</td>
+                    <td>Date added</td>
+                    <td>Date Granted</td>
+                    <td>Likes</td>
+                    <td>Actions</td>
+                </tr>
+            </th>
+            <tbody>
+                {% if wishes %}
+                    {% for wish in wishes %}
+                        {% if wish.grant_date != null %}
+                            <tr>
+                                <td>{{ wish.wish }}</td>
+                                <td>{{ wish.user.first_name }}</td>
+                                <td>{{ wish.wish_date }}</td>
+                                <td>{{ wish.grant_date }}</td>
+                                <td> {{ wish.like }}</td>
+                                <td>
+                                    {% if wish not in mywishes and wish not in liked  %}
+                                        <a href="/wishes/like/{{wish.id}}">Like</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

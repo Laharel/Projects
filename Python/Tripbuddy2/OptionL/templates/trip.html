@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>View Trip</title>
+</head>
+<body>
+    <div class="top">
+        <h1>Hello {{user.first_name}}! Let's edit your trip!</h1>
+        <div class="right">
+            <p>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
+            </p>
+        </div>
+        
+    </div>
+    <div class="contain">
+        <h3>{{trip.destination}}</h3>
+        <div class="wrapper">
+            <div class="upper">
+                <p>Start Date: {{trip.start}}</p>
+                <p>End Date: {{trip.end}}</p>
+                <p>Created On: {{trip.created_at}}</p>
+                <p>Last Updated: {{trip.updated_at}}</p>
+                <p>Plan: {{trip.plan}}</p>
+                <p>Made By: {{trip.user.first_name}}</p>
+            </div>
+            <div class="lower">
+                {% if joined %}
+                    <p>People who've joined the trip:</p>
+                    {% for join in joined %}
+                        <p>{{join.first_name}}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

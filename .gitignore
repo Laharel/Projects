@@ -1,0 +1,9 @@
+.vscode
+env/
+venv/
+__pycache__/
+.vscode/
+key*
+*pic
+db.sqlite3
+000*
